@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VS Group – Talotekniikka yrityksille</title>
+<meta name="description" content="VS Group Oy: ilmanvaihto, energia ja valvonta yhtenä järjestelmänä. Talotekniikkaa yrityksille, tekoäly mukana jokaisessa vaiheessa.">
+<meta property="og:title" content="VS Group – Rakennus, joka ajattelee.">
+<meta property="og:description" content="Ilmanvaihto, energia ja valvonta yhtenä järjestelmänä.">
+<meta property="og:url" content="https://vs-group.fi/">
+<meta name="theme-color" content="#050607">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23050607'/%3E%3Ctext x='32' y='41' font-family='Arial' font-size='24' fill='%239fd8e6' text-anchor='middle' letter-spacing='2'%3EVS%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Michroma&family=Outfit:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400&display=swap">
+<style>
+/* Layout: full-bleed black panels like a product launch; one live airflow field in the hero; quiet type everywhere else */
+:root{
+  --ink:#050607;          /* page */
+  --panel:#0b0d0f;        /* raised band */
+  --line:#1c2126;         /* hairlines */
+  --mute:#7d8790;         /* secondary text, cool grey */
+  --fg:#eef1f3;           /* primary text */
+  --air:#9fd8e6;          /* single accent: cold supply air */
+  --display:"Outfit","Helvetica Neue",Arial,sans-serif;
+  --mark:"Michroma","Eurostile","Arial Black",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--fg);font-family:var(--display);font-weight:300;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+
+/* nav */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--ink)}
+nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:20;background:linear-gradient(var(--ink),rgba(5,6,7,0))}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:24px}
+.mark{font-family:var(--mark);font-size:15px;letter-spacing:.32em;text-decoration:none;white-space:nowrap}
+nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-size:14px;font-weight:400}
+nav ul a{text-decoration:none;color:var(--fg);opacity:.75;transition:opacity .2s}
+nav ul a:hover,nav ul a:focus-visible{opacity:1}
+@media (max-width:640px){nav ul li:not(:last-child){display:none}}
+
+/* hero */
+.hero{position:relative;min-height:92svh;display:flex;align-items:flex-end;overflow:hidden}
+#field{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 50% 40%,rgba(5,6,7,0) 30%,var(--ink) 92%);pointer-events:none}
+.hero .wrap{position:relative;z-index:2;width:100%;padding-block:0 9vh}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--air);margin:0 0 22px}
+h1{font-weight:200;font-size:clamp(44px,8.4vw,118px);line-height:.98;letter-spacing:-.035em;margin:0;max-width:11ch;text-wrap:balance}
+.lede{margin:28px 0 0;max-width:46ch;color:var(--mute);font-size:clamp(17px,1.6vw,20px)}
+.cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:36px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-width:200px;height:44px;padding:0 22px;border-radius:4px;font-size:14px;font-weight:500;letter-spacing:.02em;text-decoration:none;transition:background .2s,color .2s,border-color .2s}
+.btn.solid{background:var(--fg);color:var(--ink)}
+.btn.solid:hover{background:var(--air)}
+.btn.ghost{border:1px solid rgba(238,241,243,.35);color:var(--fg)}
+.btn.ghost:hover{border-color:var(--fg)}
+.btn:focus-visible,nav a:focus-visible,.copy:focus-visible{outline:2px solid var(--air);outline-offset:3px}
+
+/* live readout */
+.readout{position:absolute;z-index:2;right:max(24px,env(safe-area-inset-right,0px));top:calc(96px + env(safe-area-inset-top,0px));font-family:var(--mono);font-size:12px;line-height:1.9;color:var(--mute);font-variant-numeric:tabular-nums;text-align:right}
+.readout b{color:var(--fg);font-weight:400}
+.readout .tag{color:var(--air);letter-spacing:.14em}
+@media (max-width:820px){.readout{display:none}}
+
+/* sections */
+section{border-top:1px solid var(--line)}
+.band{padding-block:clamp(80px,12vw,160px)}
+.statement{font-weight:200;font-size:clamp(30px,4.4vw,60px);line-height:1.12;letter-spacing:-.02em;margin:0;max-width:20ch;text-wrap:balance}
+.statement em{font-style:normal;color:var(--air)}
+.sub{color:var(--mute);max-width:52ch;margin:28px 0 0}
+
+.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:72px;border-top:1px solid var(--line)}
+.pillar{padding:36px 32px 8px 0;min-width:0}
+.pillar+.pillar{padding-left:32px;border-left:1px solid var(--line)}
+.pillar h3{font-weight:400;font-size:22px;margin:0 0 12px;letter-spacing:-.01em}
+.pillar p{color:var(--mute);margin:0 0 18px;font-size:16px}
+.spec{font-family:var(--mono);font-size:12px;color:var(--air);letter-spacing:.06em}
+@media (max-width:820px){.pillars{grid-template-columns:1fr}.pillar,.pillar+.pillar{padding:32px 0 16px;border-left:0;border-top:1px solid var(--line)}.pillar:first-child{border-top:0}}
+
+.process{background:var(--panel)}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;margin-top:64px;list-style:none;padding:0;counter-reset:s}
+.steps li{min-width:0;counter-increment:s}
+.steps li::before{content:counter(s,decimal-leading-zero);display:block;font-family:var(--mono);font-size:12px;color:var(--air);margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.steps h4{font-weight:400;font-size:19px;margin:0 0 8px}
+.steps p{color:var(--mute);font-size:15px;margin:0}
+@media (max-width:900px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+
+.machine{text-align:left}
+.machine .big{font-family:var(--mark);font-size:clamp(28px,6vw,84px);letter-spacing:.06em;line-height:1.05;margin:0}
+.machine .big span{color:var(--air)}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;margin-top:48px}
+.cols p{margin:0;color:var(--mute)}
+.memory{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;margin-top:80px;padding-top:48px;border-top:1px solid var(--line)}
+.memory h3{font-weight:300;font-size:clamp(24px,2.8vw,36px);line-height:1.15;letter-spacing:-.015em;margin:0;max-width:16ch;text-wrap:balance}
+.memory p{color:var(--mute);margin:0 0 20px}
+@media (max-width:760px){.memory{grid-template-columns:1fr;gap:20px}}
+@media (max-width:760px){.cols{grid-template-columns:1fr;gap:20px}}
+
+.contact .wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:48px;align-items:end}
+@media (max-width:820px){.contact .wrap{grid-template-columns:1fr}}
+.addr{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:32px}
+.addr code{font-family:var(--mono);font-size:clamp(15px,2vw,20px);color:var(--fg);user-select:all;word-break:break-all}
+.copy{background:none;border:1px solid var(--line);color:var(--mute);font:500 12px var(--display);letter-spacing:.06em;height:32px;padding:0 14px;border-radius:4px;cursor:pointer}
+.copy:hover{color:var(--fg);border-color:var(--mute)}
+.facts{font-family:var(--mono);font-size:13px;color:var(--mute);line-height:2;margin:0}
+.facts dt{color:var(--fg);float:left;width:110px}
+.facts dd{margin:0 0 0 110px}
+
+footer{border-top:1px solid var(--line);padding-block:28px;font-size:13px;color:var(--mute)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* entrance: visible at rest, gently lifts in */
+.rise{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.rise.d2{animation-delay:.12s}.rise.d3{animation-delay:.24s}.rise.d4{animation-delay:.36s}
+@keyframes rise{from{transform:translateY(14px);opacity:.001}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.rise{animation:none}html{scroll-behavior:auto}}
+</style>
+
+</head>
+<body>
+<nav aria-label="Päävalikko">
+  <div class="wrap">
+    <a class="mark" href="#top">VS GROUP</a>
+    <ul>
+      <li><a href="#ilma">Palvelut</a></li>
+      <li><a href="#toiminta">Toimintatapa</a></li>
+      <li><a href="#kone">Ilmari</a></li>
+      <li><a href="#yhteys">Yhteys</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="readout" aria-label="Esimerkkinäkymä valvonnasta">
+    <div class="tag">LIVE-VALVONTA</div>
+    <div>TULOILMA <b id="r-ti">18,9</b> °C</div>
+    <div>CO₂ <b id="r-co">614</b> ppm</div>
+    <div>ILMAVIRTA <b id="r-q">2,41</b> m³/s</div>
+    <div>SFP <b id="r-sfp">1,38</b> kW/(m³/s)</div>
+  </div>
+  <div class="wrap">
+    <p class="eyebrow rise">Talotekniikka yrityksille</p>
+    <h1 class="rise d2">Rakennus, joka ajattelee.</h1>
+    <p class="lede rise d3">Ilmanvaihto, energia ja valvonta yhtenä järjestelmänä. Suunniteltu ihmisen kokemuksella, valvottu koneen tarkkuudella.</p>
+    <div class="cta rise d4">
+      <a class="btn solid" href="#yhteys">Pyydä kartoitus</a>
+      <a class="btn ghost" href="#ilma">Tutustu</a>
+    </div>
+  </div>
+</header>
+
+<section id="ilma">
+  <div class="wrap band">
+    <p class="eyebrow">Mitä teemme</p>
+    <p class="statement">Kiinteistö kuluttaa energiaa joka tunti. Me teemme <em>jokaisesta tunnista</em> mitattavan.</p>
+    <div class="pillars">
+      <div class="pillar">
+        <h3>Ilma</h3>
+        <p>Ilmanvaihdon asennukset, esivalmisteet ja saneeraukset teollisuuteen ja toimitiloihin. Ilmamäärät säädettyinä ja mitattuina.</p>
+        <div class="spec">m³/s · Pa · SFP · dB(A)</div>
+      </div>
+      <div class="pillar">
+        <h3>Energia</h3>
+        <p>Lämmitys, pumppuryhmät, lämpöpumput ja aurinkosähkö. Mitoitus, joka perustuu kiinteistön todelliseen kulutukseen eikä arvioon.</p>
+        <div class="spec">kWh · COP · kWp</div>
+      </div>
+      <div class="pillar">
+        <h3>Äly</h3>
+        <p>Tekoäly mukana jokaisessa vaiheessa: kulutusdatan analyysista mitoitukseen, dokumentointiin ja jatkuvaan valvontaan. Poikkeamat tulevat esiin ennen kuin niistä tulee vikoja.</p>
+        <div class="spec">24 / 7 · 365</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="toiminta">
+  <div class="wrap band">
+    <p class="eyebrow">Toimintatapa</p>
+    <p class="statement">Neljä vaihetta. Yksi vastuu.</p>
+    <ol class="steps">
+      <li><h4>Kartoitus</h4><p>Käymme kohteen läpi ja mittaamme lähtötilanteen. Tekoäly käy kulutushistorian läpi tunti tunnilta ja löytää, mihin energia oikeasti menee.</p></li>
+      <li><h4>Mitoitus</h4><p>Ratkaisu lasketaan kohteen omista luvuista. Saat selkeän esityksen säästöstä ja takaisinmaksuajasta.</p></li>
+      <li><h4>Toteutus</h4><p>Asennus, säätö ja käyttöönotto omana työnä tai yhdessä luotettujen kumppaniemme kanssa.</p></li>
+      <li><h4>Valvonta</h4><p>Työ ei lopu luovutukseen. Seuraamme järjestelmää ja raportoimme, toimiiko se niin kuin luvattiin.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="machine" id="kone">
+  <div class="wrap band">
+    <p class="eyebrow">Ilmari</p>
+    <p class="big">PIENI TIIMI.<br><span>KONE, JOKA EI NUKU.</span></p>
+    <div class="cols">
+      <p>VS Group on rakennettu alusta asti tekoälyn varaan. Raportit, laskelmat, tilaukset ja seuranta kulkevat Ilmarin kautta, joten ihmiset voivat keskittyä työmaahan ja asiakkaaseen.</p>
+      <p>Saat vastauksen nopeammin, dokumentaation täydellisempänä ja raportin silloin, kun siitä on hyötyä. Kaikki tekninen työ ja jokainen päätös on silti ammattilaisen hyväksymä.</p>
+    </div>
+    <div class="memory">
+      <div>
+        <p class="eyebrow">Kohteen muisti</p>
+        <h3>Jokainen luovutettu kohde saa oman tekoälyn.</h3>
+      </div>
+      <div>
+        <p>Piirustukset, laitekortit, säätöpöytäkirjat, huolto-ohjeet ja mittaustulokset luovutetaan tekoälylle, joka tuntee kohteenne. Kysy siltä, mikä suodatin koneeseen kuuluu tai mitä ilmamääriä toiseen kerrokseen säädettiin, ja saat vastauksen sekunneissa. Lisenssi sisältyy hintaan.</p>
+        <div class="spec">PIIRUSTUKSET · LAITEKORTIT · PÖYTÄKIRJAT · HUOLTO-OHJEET</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="yhteys">
+  <div class="wrap band">
+    <div>
+      <p class="eyebrow">Yhteys</p>
+      <p class="statement">Kerro kohteesta. Me kerromme, mitä siitä voi saada irti.</p>
+      <div class="addr">
+        <code id="email">ilmari@vs-group.fi</code>
+        <button class="copy" id="copyBtn" type="button">Kopioi</button>
+      </div>
+    </div>
+    <p class="facts">Ilmari lukee jokaisen viestin. Ihminen vastaa.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 VS Group Oy</span>
+    <span>vs-group.fi</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* copy email */
+  var btn=document.getElementById('copyBtn'),em=document.getElementById('email');
+  btn.addEventListener('click',function(){
+    var t=em.textContent.trim();
+    function sel(){var r=document.createRange();r.selectNodeContents(em);var s=getSelection();s.removeAllRanges();s.addRange(r);}
+    try{navigator.clipboard.writeText(t).then(function(){btn.textContent='Kopioitu';setTimeout(function(){btn.textContent='Kopioi'},1600)},sel)}catch(e){sel()}
+  });
+
+  /* airflow field: particles follow streamlines that bend around an obstacle, like supply air through a room */
+  var c=document.getElementById('field'),x=c.getContext('2d');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W,H,dpr,P=[],mx=-1e4,my=-1e4;
+  function size(){dpr=Math.min(devicePixelRatio||1,2);W=c.clientWidth;H=c.clientHeight;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0);
+    var n=Math.round(Math.min(1400,W*H/900));P=[];for(var i=0;i<n;i++)P.push(spawn(true));x.fillStyle='#050607';x.fillRect(0,0,W,H);}
+  function spawn(any){return{x:any?Math.random()*W:-10,y:Math.random()*H,l:Math.random()*.6+.4,s:Math.random()*.8+.6}}
+  function vel(px,py,t){
+    var cx=W*.62,cy=H*.42,r=Math.min(W,H)*.16;
+    var dx=px-cx,dy=py-cy,d2=dx*dx+dy*dy+1;
+    /* uniform flow + doublet around cylinder */
+    var k=r*r/d2;
+    var u=1-k*(dx*dx-dy*dy)/d2, v=-k*2*dx*dy/d2;
+    v+=Math.sin(px*.004+t*.0004)*.18;
+    /* cursor as a gentle second obstacle */
+    var ex=px-mx,ey=py-my,e2=ex*ex+ey*ey+1;if(e2<22000){var q=6000/e2;u+=ex/Math.sqrt(e2)*q*.2;v+=ey/Math.sqrt(e2)*q*.6;}
+    return[u,v];
+  }
+  function step(t){
+    x.fillStyle='rgba(5,6,7,0.085)';x.fillRect(0,0,W,H);
+    x.lineWidth=1;
+    for(var i=0;i<P.length;i++){var p=P[i],a=vel(p.x,p.y,t),sp=1.6*p.s;
+      var nx=p.x+a[0]*sp,ny=p.y+a[1]*sp;
+      x.strokeStyle='rgba(159,216,230,'+(0.16*p.l)+')';
+      x.beginPath();x.moveTo(p.x,p.y);x.lineTo(nx,ny);x.stroke();
+      p.x=nx;p.y=ny;if(p.x>W+10||p.y<-10||p.y>H+10)P[i]=spawn(false);}
+  }
+  function loop(t){step(t);requestAnimationFrame(loop)}
+  size();addEventListener('resize',size);
+  c.parentElement.addEventListener('pointermove',function(e){var b=c.getBoundingClientRect();mx=e.clientX-b.left;my=e.clientY-b.top});
+  c.parentElement.addEventListener('pointerleave',function(){mx=my=-1e4});
+  if(reduce){for(var k=0;k<220;k++)step(k*16)}else requestAnimationFrame(loop);
+
+  /* example readout drifts slowly */
+  var vals={ti:[18.9,.05,18.2,19.6,1],co:[614,4,560,690,0],q:[2.41,.01,2.30,2.52,2],sfp:[1.38,.006,1.30,1.46,2]};
+  function fmt(v,d){return v.toFixed(d).replace('.',',')}
+  if(!reduce)setInterval(function(){for(var k in vals){var o=vals[k];o[0]=Math.max(o[2],Math.min(o[3],o[0]+(Math.random()-.5)*2*o[1]));document.getElementById('r-'+k).textContent=fmt(o[0],o[4])}},1400);
+})();
+</script>
+
+</body>
+</html>
